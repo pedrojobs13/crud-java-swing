@@ -1,0 +1,13 @@
+br\ufes\crud\dao\UsuarioDao.class
+br\ufes\crud\model\Usuario.class
+br\ufes\crud\view\ConfirmaExclucaoView.class
+br\ufes\crud\view\VisualizarUsuarioView.class
+br\ufes\crud\presenter\IncluirPresenter.class
+br\ufes\crud\presenter\IncluirPresenter$1.class
+br\ufes\crud\model\Usuario$Builder.class
+br\ufes\crud\view\PrincipalView.class
+br\ufes\crud\presenter\PrincipalPresenter.class
+br\ufes\crud\view\ManterUsuarioView.class
+br\ufes\crud\view\PrincipalView$1.class
+br\ufes\crud\Crud.class
+br\ufes\crud\view\PrincipalView$2.class
