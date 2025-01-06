@@ -4,23 +4,19 @@
  */
 package br.ufes.crud.view;
 
-import br.ufes.crud.dao.UsuarioDao;
 import br.ufes.crud.presenter.IncluirPresenter;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
+import br.ufes.crud.presenter.ListarPresenter;
+import br.ufes.crud.presenter.VisualizarUsuarioPresenter;
+
+import javax.swing.*;
 
 /**
- *
  * @author pedro lucas
  */
 public class PrincipalView extends javax.swing.JFrame {
 
-    private final UsuarioDao usuarioDao;
-
     public PrincipalView() {
         initComponents();
-        usuarioDao = new UsuarioDao();
 
         this.setLocationRelativeTo(this.getParent());
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -38,11 +34,13 @@ public class PrincipalView extends javax.swing.JFrame {
     private void initComponents() {
 
         btnNovo = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
+        btnVisualizar = new javax.swing.JButton();
         btnFechar = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         cbBuscar = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbUsuarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,7 +52,12 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
-        btnEditar.setText("Editar");
+        btnVisualizar.setText("Visualizar");
+        btnVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarActionPerformed(evt);
+            }
+        });
 
         btnFechar.setText("Fechar");
 
@@ -65,49 +68,65 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
-        cbBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Telefone" }));
+        cbBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Nome", "Telefone"}));
+
+        tbUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{
+                        {},
+                        {},
+                        {},
+                        {}
+                },
+                new String[]{
+
+                }
+        ));
+        jScrollPane2.setViewportView(tbUsuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnNovo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnFechar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(cbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(9, 9, 9)
+                                                .addComponent(cbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnBuscar)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addContainerGap())
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(112, 112, 112)
+                                .addComponent(btnNovo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnVisualizar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnFechar)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar)
-                    .addComponent(cbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNovo)
-                    .addComponent(btnEditar)
-                    .addComponent(btnFechar))
-                .addGap(25, 25, 25))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnBuscar)
+                                        .addComponent(cbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnNovo)
+                                        .addComponent(btnVisualizar)
+                                        .addComponent(btnFechar))
+                                .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        btnNovo.getAccessibleContext().setAccessibleName("Novo");
-        btnEditar.getAccessibleContext().setAccessibleName("Editar");
-        btnEditar.getAccessibleContext().setAccessibleDescription("");
+        btnVisualizar.getAccessibleContext().setAccessibleDescription("");
         cbBuscar.getAccessibleContext().setAccessibleName("cbBuscar");
 
         pack();
@@ -121,16 +140,22 @@ public class PrincipalView extends javax.swing.JFrame {
         IncluirPresenter presenter = new IncluirPresenter();
     }//GEN-LAST:event_btnNovoActionPerformed
 
+    private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
+        VisualizarUsuarioPresenter presenter = new VisualizarUsuarioPresenter();
+    }//GEN-LAST:event_btnVisualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnNovo;
+    private javax.swing.JButton btnVisualizar;
     private javax.swing.JComboBox<String> cbBuscar;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tbUsuarios;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 
@@ -142,12 +167,12 @@ public class PrincipalView extends javax.swing.JFrame {
         this.btnBuscar = btnBuscar;
     }
 
-    public JButton getBtnEditar() {
-        return btnEditar;
+    public JButton getBtnVisualizar() {
+        return btnVisualizar;
     }
 
-    public void setBtnEditar(JButton btnEditar) {
-        this.btnEditar = btnEditar;
+    public void setBtnVisualizar(JButton btnVisualizar) {
+        this.btnVisualizar = btnVisualizar;
     }
 
     public JButton getBtnFechar() {
@@ -181,4 +206,17 @@ public class PrincipalView extends javax.swing.JFrame {
     public void setTxtBuscar(JTextField txtBuscar) {
         this.txtBuscar = txtBuscar;
     }
+
+    public JTable getTbUsuarios() {
+        return tbUsuarios;
+    }
+
+    public void setTbUsuarios(JTable tbUsuarios) {
+        this.tbUsuarios = tbUsuarios;
+    }
+
+    public void initView(ListarPresenter listarPresenter) {
+        listarPresenter.listarUsuarios();
+    }
+
 }

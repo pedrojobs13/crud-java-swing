@@ -5,33 +5,18 @@
 package br.ufes.crud.dao;
 
 import br.ufes.crud.model.Usuario;
-import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
- *
  * @author pedro lucas
  */
-public class UsuarioDao {
+public interface UsuarioDao {
+    void inserir(Usuario usuario);
 
-    private final List<Usuario> usuarios = new ArrayList<>();
+    void atualizar(Usuario usuario, int id);
 
-    public void add(String nome, String senha) {
-        usuarios.add(new Usuario.Builder()
-                .nome(nome)
-                .senha(senha)
-                .build());
-    }
+    void deletar(int id);
 
-    public List<Usuario> listagem() {
-        return usuarios;
-    }
-
-    public Usuario buscarUsuarioPeloNome(String nome) {
-        return usuarios.stream().filter(e -> e.getNome().contains(nome))
-                .findFirst()
-                .orElse(null);
-    }
+    List<Usuario> listar();
 }

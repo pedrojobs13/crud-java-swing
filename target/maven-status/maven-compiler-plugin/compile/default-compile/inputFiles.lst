@@ -1,8 +1,10 @@
-C:\Users\pedro lucas\Documents\NetBeansProjects\crud\src\main\java\br\ufes\crud\Crud.java
 C:\Users\pedro lucas\Documents\NetBeansProjects\crud\src\main\java\br\ufes\crud\dao\UsuarioDao.java
+C:\Users\pedro lucas\Documents\NetBeansProjects\crud\src\main\java\br\ufes\crud\dao\UsuarioDaoImpl.java
 C:\Users\pedro lucas\Documents\NetBeansProjects\crud\src\main\java\br\ufes\crud\model\Usuario.java
+C:\Users\pedro lucas\Documents\NetBeansProjects\crud\src\main\java\br\ufes\crud\presenter\ExcluirPresenter.java
 C:\Users\pedro lucas\Documents\NetBeansProjects\crud\src\main\java\br\ufes\crud\presenter\IncluirPresenter.java
 C:\Users\pedro lucas\Documents\NetBeansProjects\crud\src\main\java\br\ufes\crud\presenter\PrincipalPresenter.java
+C:\Users\pedro lucas\Documents\NetBeansProjects\crud\src\main\java\br\ufes\crud\presenter\VisualizarUsuarioPresenter.java
 C:\Users\pedro lucas\Documents\NetBeansProjects\crud\src\main\java\br\ufes\crud\view\ConfirmaExclucaoView.java
 C:\Users\pedro lucas\Documents\NetBeansProjects\crud\src\main\java\br\ufes\crud\view\ManterUsuarioView.java
 C:\Users\pedro lucas\Documents\NetBeansProjects\crud\src\main\java\br\ufes\crud\view\PrincipalView.java

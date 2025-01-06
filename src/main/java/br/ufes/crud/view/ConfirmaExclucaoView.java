@@ -4,6 +4,8 @@
  */
 package br.ufes.crud.view;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author pedro lucas
@@ -76,4 +78,20 @@ public class ConfirmaExclucaoView extends javax.swing.JFrame {
     private javax.swing.JButton btnNegar;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnConfirma() {
+        return btnConfirma;
+    }
+
+    public void setBtnConfirma(JButton btnConfirma) {
+        this.btnConfirma = btnConfirma;
+    }
+
+    public JButton getBtnNegar() {
+        return btnNegar;
+    }
+
+    public void setBtnNegar(JButton btnNegar) {
+        this.btnNegar = btnNegar;
+    }
 }

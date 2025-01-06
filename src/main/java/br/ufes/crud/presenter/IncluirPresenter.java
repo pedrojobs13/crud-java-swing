@@ -5,23 +5,25 @@
 package br.ufes.crud.presenter;
 
 import br.ufes.crud.dao.UsuarioDao;
+import br.ufes.crud.dao.UsuarioDaoImpl;
+import br.ufes.crud.model.Usuario;
 import br.ufes.crud.view.ManterUsuarioView;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author pedro lucas
  */
 public class IncluirPresenter {
 
-    private final UsuarioDao usuarioDao;
+    private UsuarioDao usuarioDao;
     private ManterUsuarioView view;
 
     public IncluirPresenter() {
+        usuarioDao = new UsuarioDaoImpl();
         view = new ManterUsuarioView();
-        usuarioDao = new UsuarioDao();
         view.getBtnSalvar().addActionListener((ActionEvent e) -> {
             salvar();
         });
@@ -37,9 +39,14 @@ public class IncluirPresenter {
     private void salvar() {
         String nome = view.getTxtNome().getText();
         String senha = view.getTxtSenha().getText();
-        usuarioDao.add(nome, senha);
+        Usuario usuario = new Usuario.Builder()
+                .nome(nome)
+                .senha(senha)
+                .build();
+        usuarioDao.inserir(usuario);
 
         JOptionPane.showMessageDialog(view, "Contato Salvo");
+        
     }
 
     private void cancelar() {
