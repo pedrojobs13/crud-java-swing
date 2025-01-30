@@ -11,6 +11,12 @@
         <maven.compiler.release>17</maven.compiler.release>
         <exec.mainClass>br.ufes.crud.Crud</exec.mainClass>
     </properties>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.xerial</groupId>
@@ -27,6 +33,11 @@
             <artifactId>slf4j-simple</artifactId>
             <version>1.6.4</version>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>com.github.pedrojobs13</groupId>
+            <artifactId>log</artifactId>
+            <version>83524c4fd1</version>
+        </dependency>
+    </dependencies>
 </project>
